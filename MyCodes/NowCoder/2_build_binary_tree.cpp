@@ -49,7 +49,7 @@ BinaryNode* BuildBinaryTree (const int* preorder, const int* inorder, int elemen
     return root_node;
 }
 
-// 利用后续遍历验证结果
+// 利用层次遍历验证结果
 void TravLevel (const BinaryNode* bin_tree) {
     if (nullptr == bin_tree) {
         return;
