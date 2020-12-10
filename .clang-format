@@ -89,7 +89,7 @@ BreakBeforeTernaryOperators:    false
 BreakConstructorInitializersBeforeComma:    false
 BreakConstructorInitializers: BeforeColon
 # 每行字符的限制，0表示没有限制
-ColumnLimit:    80
+ColumnLimit:   120 
 # 描述具有特殊意义的注释的正则表达式，它不应该被分割为多行或以其它方式改变
 CommentPragmas:    '^ IWYU pragma:'
 CompactNamespaces: false
@@ -172,13 +172,13 @@ SpaceAfterTemplateKeyword: true
 # 在赋值运算符之前添加空格
 SpaceBeforeAssignmentOperators:    true
 # 开圆括号之前添加一个空格: Never, ControlStatements, Always
-SpaceBeforeParens:    ControlStatements
+SpaceBeforeParens:   Always 
 # 在空的圆括号中添加空格
 SpaceInEmptyParentheses:    false
 # 在尾随的评论前添加的空格数(只适用于//)
 SpacesBeforeTrailingComments:    2
 # 在尖括号的<后和>前添加空格
-SpacesInAngles:    false
+SpacesInAngles:   true 
 # 在容器(ObjC和JavaScript的数组和字典等)字面量中添加空格
 SpacesInContainerLiterals:   true 
 # 在C风格类型转换的括号中添加空格
