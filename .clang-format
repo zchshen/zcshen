@@ -172,7 +172,7 @@ SpaceAfterTemplateKeyword: true
 # 在赋值运算符之前添加空格
 SpaceBeforeAssignmentOperators:    true
 # 开圆括号之前添加一个空格: Never, ControlStatements, Always
-SpaceBeforeParens:   Always 
+SpaceBeforeParens:  ControlStatements 
 # 在空的圆括号中添加空格
 SpaceInEmptyParentheses:    false
 # 在尾随的评论前添加的空格数(只适用于//)
