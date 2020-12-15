@@ -32,11 +32,11 @@ int Match(const string& text, const string& pattern) {
     // 构造next表
     int* next_table = BuildNextTable(pattern);
 
-    size_t text_len = text.size();
-    size_t pattern_len = pattern.size();
+    int text_len = text.size();
+    int pattern_len = pattern.size();
 
-    size_t text_offset = 0;
-    size_t pattern_offset = 0;
+    int text_offset = 0;
+    int pattern_offset = 0;
 
     while (pattern_offset < pattern_len && text_offset < text_len) {
         if (0 > pattern_offset || text[text_offset] == pattern[pattern_offset]) {
