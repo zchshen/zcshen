@@ -5,10 +5,10 @@
  */
 
 #include <iostream>
-#include "CommonFunction.h"
+#include "common_function.h"
 
 using namespace std;
-using namespace zcshen_common_function;
+using namespace zcshen;
 
 static const int kArrayLen = 10;
 

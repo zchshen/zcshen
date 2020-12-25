@@ -8,7 +8,7 @@
 
 using namespace std;
 
-namespace zcshen_common_function
+namespace zcshen
 {
     /**
      * @brief: 打印集合内各个元素值
@@ -23,4 +23,4 @@ namespace zcshen_common_function
         cout << endl;
     }
 
-}  // namespace zcshen_common_function
+}  // namespace zcshen
