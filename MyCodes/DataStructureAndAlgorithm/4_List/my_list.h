@@ -8,6 +8,9 @@
 #define ZCSHEN_LIST_H
 
 #include <stdint.h>
+#include <iostream>
+
+using namespace std;
 
 namespace zcshen {
 
@@ -52,7 +55,7 @@ Position(T) ListNode< T >::InsertAsPred(const T& e) {
 template < typename T >
 Position(T) ListNode< T >::InsertAsSucc(const T& e) {
     ListNode* node = new ListNode(e, this, succ);
-    succ->pred = ndoe;
+    succ->pred = node;
     succ = node;
 
     return node;
@@ -88,6 +91,10 @@ class List {
         return _trailer->pred;
     }
 
+    inline int Size() const {
+      return _size;
+    }
+
     // 循秩访问
     T operator[](Rank r) const;
 
@@ -110,11 +117,18 @@ class List {
     // 链表去重操作
     int Deduplicate();
 
+    // 选择排序- 对起始于P的连续n个元素进行排序
+    void SelectionSort(Position(T) p, int n);
+    Position(T) SelectMax(Position(T) p, int n);
+
     // 有序链表的去重
     int Uniquify();
 
     // 有序列表查找, 返回不大于e的最后一个元素, 在p的n个真前缀中查找元素e
     Position(T) Search(const T& e, int n, Position(T) p);
+
+    // 打印链表
+    void Print();
 
   protected:
   private:
@@ -122,7 +136,7 @@ class List {
     void Init();
 
     // 清空链表
-    void Clear();
+    int Clear();
 
   private:
     // 规模
@@ -203,20 +217,29 @@ T List< T >::Remove(Position(T) p) {
     T e = p->data;
     p->pred->succ = p->succ;
     p->succ->pred = p->pred;
-    --size;
+    --_size;
     delete p;
 
     return e;
 }
 
 template < typename T >
-void List< T >::Clear() {
+int List< T >::Clear() {
     int old_size = _size;
     while (0 < _size) {
         Remove(_header->succ);
     }
 
     return old_size;
+}
+
+template < typename T >
+void List< T >::Print() {
+    Position(T) cur = _header;
+    while (_trailer != (cur = cur->succ)) {
+        cout << cur->data << " ";
+    }
+    cout << endl;
 }
 
 template < typename T >
@@ -237,6 +260,38 @@ int List< T >::Deduplicate() {
     }
 
     return (old_size - _size);
+}
+
+template < typename T >
+void List< T >::SelectionSort(Position(T) p, int n) {
+    if (n < 2) {
+        return;
+    }
+
+    Position(T) head = p->pred;
+    Position(T) tail = p;
+
+    for (int i = 0; i < n; ++i) {
+        tail = tail->succ;
+    }
+
+    while (1 < n) {
+        InsertBefore(tail, Remove(SelectMax(head->succ, n)));
+        tail = tail->pred;
+        --n;
+    }
+}
+
+template < typename T >
+Position(T) List< T >::SelectMax(Position(T) p, int n) {
+    Position(T) max = p;
+    for (Position(T) cur = p; 1 < n; --n) {
+        if ((cur = cur->succ)->data >= max->data) {
+            max = cur;
+        }
+    }
+
+    return max;
 }
 
 template < typename T >
