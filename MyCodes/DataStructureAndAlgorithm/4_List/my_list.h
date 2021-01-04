@@ -117,9 +117,12 @@ class List {
     // 链表去重操作
     int Deduplicate();
 
-    // 选择排序- 对起始于P的连续n个元素进行排序
+    // 选择排序 - 对起始于P的连续n个元素进行选择排序
     void SelectionSort(Position(T) p, int n);
     Position(T) SelectMax(Position(T) p, int n);
+
+    // 插入排序 - 对起始于p的连续n个元素进行插入排序
+    void InsertionSort(Position(T) p, int n);
 
     // 有序链表的去重
     int Uniquify();
@@ -326,6 +329,19 @@ Position(T) List< T >::Search(const T& e, int n, Position(T) p) {
     }
 
     return p;
+}
+
+template < typename T >
+void List< T >::InsertionSort(Position(T) p, int n) {
+    if (nullptr == p) {
+        return;
+    }
+
+    for (int r = 0; r < n; r++) {
+        InsertAfter(Search(p->data, r, p), p->data);
+        p = p->succ;
+        Remove(p->pred);
+    }
 }
 
 }  //  end of namespace zcshen
