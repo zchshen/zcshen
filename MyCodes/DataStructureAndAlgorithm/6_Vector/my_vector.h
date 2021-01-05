@@ -25,6 +25,8 @@ template < typename T >
 class Vector {
   public:
     Vector() {
+        _element = new T[_capacity = DEFAULT_CAPACITY];
+        _size = 0;
     }
 
     Vector(int c) {
@@ -53,6 +55,14 @@ class Vector {
 
     inline T& operator[](Rank r) const {
         return _element[r];
+    }
+
+    inline bool Empty() const {
+        return (0 == _size);
+    }
+
+    inline int Size() const {
+        return _size;
     }
 
     // 单元素插入
@@ -144,7 +154,7 @@ Rank Vector< T >::Insert(Rank r, const T& e) {
 
 // [lo, hi)
 template < typename T >
-int Remove(Rank lo, Rank hi) {
+int Vector< T >::Remove(Rank lo, Rank hi) {
     if (lo == hi) {
         return 0;
     }
@@ -206,11 +216,11 @@ int Vector< T >::Disordered() const {
 
     for (int i = 1; i < _size; i++) {
         if (_element[i - 1] > _element[i]) {
-            n++;
+            counter++;
         }
     }
 
-    return n;
+    return counter;
 }
 
 template < typename T >
@@ -222,7 +232,7 @@ int Vector< T >::Uniquify() {
         _element[i] == _element[i - 1] ? Remove(i) : i++;
     }
 
-    return old_size - size;
+    return old_size - _size;
 }
 
 template < typename T >
