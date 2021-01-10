@@ -95,6 +95,10 @@ class List {
       return _size;
     }
 
+    inline bool Empty() const {
+        return !_size;
+    }
+
     // 循秩访问
     T operator[](Rank r) const;
 
