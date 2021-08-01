@@ -37,7 +37,14 @@ struct BinNode {
     BinNodePosition(T) InsertAsRChild(const T& e);
 
     // 当前节点的直接后继
-    BinNodePosition(T) Succ();
+    BinNodePosition(T) Succ() {
+        BinNodePosition(T) node = this;
+        while (NULL != node->lchild) {
+            node = node->lchild;
+        }
+
+        return node;
+    }
 
     //子树层次遍历
     template < typename VST >
